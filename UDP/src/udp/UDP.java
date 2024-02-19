@@ -24,18 +24,26 @@ public class UDP {
 
         InetAddress serverAddres = InetAddress.getByName("192.168.0.112");
         
-        String d= "diego";
-        byte[] bytesToSend = d.getBytes();
+        
         
     
         int serverPort = 7;
         
         DatagramSocket socket = new DatagramSocket();
         
+        
+        String d= "DAME ARCHIVOS";
+        byte[] bytesToSend = d.getBytes();
         DatagramPacket sendPacket = new DatagramPacket(bytesToSend,bytesToSend.length, serverAddres, serverPort);
+        socket.send(sendPacket);//YA TE DIJE "DAME ARCHIVOS"
+        
+        
         DatagramPacket recievePacket = new DatagramPacket(new byte[255],255);
+        socket.receive(recievePacket); //ME ACABA DE ENVIAR LA LISTA DE ARCHIVOS
+        String archivos= new String(recievePacket.getData()); //ESTA ES LA LISTA DE ARCHIVOS
         
-        
+        String a ="ejemplo.pdf ola.mp4 asdasd.rar";//ejemplo
+       
         int tries=0;     
         boolean recieveResponse =false;
         do {
