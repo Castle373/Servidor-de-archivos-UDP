@@ -36,23 +36,10 @@ public class Archivos extends javax.swing.JFrame {
             archivo3.setText(listaArchivos.get(2));
         }
     }
-
-    public List<String> obtenerNombresArchivos(String directorio) {
-        List<String> nombresArchivos = new ArrayList<>();
-
-        File folder = new File(directorio);
-        File[] files = folder.listFiles();
-
-        if (files != null) {
-            for (File file : files) {
-                if (file.isFile()) {
-                    nombresArchivos.add(file.getName());
-                }
-            }
-        }
-
-        return nombresArchivos;
+    public String obtener(String archivo){
+        return archivo;
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,17 +188,18 @@ public class Archivos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println(archivo1.getText());
+        obtener(archivo1.getText());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        System.out.println(archivo2.getText());
+        obtener(archivo2.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        System.out.println(archivo3.getText());
+        obtener(archivo3.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -52,7 +52,7 @@ public class ClienteSocket extends Thread {
 
             for (String nombreArchivo : nombresArchivos) {
                 listaNombresArchivos.add(nombreArchivo);
-                System.out.println(""+nombreArchivo);
+                
             }
             
             pantallaArchivo.mostrarNombresArchivos(listaNombresArchivos);
