@@ -14,11 +14,15 @@ import java.util.List;
  */
 public class Archivos extends javax.swing.JFrame {
 
+    ClienteSocket clienteSocket;
+    
     /**
      * Creates new form Archivos
      */
     public Archivos() {
+        clienteSocket = new ClienteSocket(this);
         initComponents();
+        clienteSocket.start();
     }
 
     public void mostrarNombresArchivos(List<String> listaArchivos) {
@@ -182,6 +186,7 @@ public class Archivos extends javax.swing.JFrame {
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 360, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

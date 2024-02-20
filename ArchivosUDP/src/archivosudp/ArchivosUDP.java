@@ -15,6 +15,8 @@ public class ArchivosUDP {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Archivos pantallaArchivos = new Archivos();
+        pantallaArchivos.setVisible(true);
     }
     
 }

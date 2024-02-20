@@ -32,6 +32,7 @@ public class ClienteSocket extends Thread {
             socket = new DatagramSocket();
             pantallaArchivo = pantalla;
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -43,7 +44,7 @@ public class ClienteSocket extends Thread {
             DatagramPacket sendPacket = new DatagramPacket(bytesToSend, bytesToSend.length, serverAddres, serverPort);
             socket.send(sendPacket);
             DatagramPacket recievePacket = new DatagramPacket(new byte[255], 255);
-            socket.receive(recievePacket);
+            //socket.receive(recievePacket);
             String archivos = ("archivo1.jpg archivo2.pdf archivo3.rar");
             String[] nombresArchivos = archivos.split("\\s+");
 
@@ -51,7 +52,7 @@ public class ClienteSocket extends Thread {
 
             for (String nombreArchivo : nombresArchivos) {
                 listaNombresArchivos.add(nombreArchivo);
-                
+                System.out.println(""+nombreArchivo);
             }
             
             pantallaArchivo.mostrarNombresArchivos(listaNombresArchivos);
