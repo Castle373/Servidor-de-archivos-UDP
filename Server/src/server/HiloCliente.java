@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,6 +62,21 @@ public class HiloCliente extends Thread {
         while (true) {
             try {
                 socket.receive(packetRecibir);
+                String fileName = new String(packetRecibir.getData()).trim();
+                
+        
+                
+                DatagramPacket recieveArchive = new DatagramPacket(new byte[10000000], 10000000);
+                socket.send(recieveArchive);
+                
+                
+                 
+                
+                 
+                 
+                 //String filedata=new String(recieveArchive.getData()).trim();
+                
+                 
 
             } catch (IOException ex) {
                 Logger.getLogger(HiloCliente.class.getName()).log(Level.SEVERE, null, ex);
