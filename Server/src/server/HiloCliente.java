@@ -5,10 +5,17 @@
 package server;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -63,20 +70,27 @@ public class HiloCliente extends Thread {
             try {
                 socket.receive(packetRecibir);
                 String fileName = new String(packetRecibir.getData()).trim();
-                
-        
-                
-                DatagramPacket recieveArchive = new DatagramPacket(new byte[10000000], 10000000);
-                socket.send(recieveArchive);
-                
-                
-                 
-                
-                 
-                 
-                 //String filedata=new String(recieveArchive.getData()).trim();
-                
-                 
+
+                DatagramPacket recieveArchive;
+
+                //Lo busca en el directorio por el nombre
+                try (FileInputStream path = new FileInputStream("./archivos/" + fileName)) {
+
+                    // Lee el contenido actual del archivo (si existe)
+                    byte[] packet = new byte[1024];
+
+                    while (true) {
+
+                        if (!(path.read(packet) != -1)) {
+                            break;
+                        }
+                        recieveArchive = new DatagramPacket(packet, packet.length);
+
+                        socket.send(recieveArchive);
+                    }
+
+                    path.close();
+                }
 
             } catch (IOException ex) {
                 Logger.getLogger(HiloCliente.class.getName()).log(Level.SEVERE, null, ex);
