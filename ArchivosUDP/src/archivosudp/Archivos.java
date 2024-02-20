@@ -125,6 +125,11 @@ public class Archivos extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(51, 204, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("Descargar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         archivo2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         archivo2.setText("Archivo 2 ");
@@ -158,6 +163,11 @@ public class Archivos extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(51, 204, 0));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("Descargar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         archivo3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         archivo3.setText("Archivo 3");
@@ -191,8 +201,18 @@ public class Archivos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        System.out.println(archivo1.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        System.out.println(archivo2.getText());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.out.println(archivo3.getText());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
