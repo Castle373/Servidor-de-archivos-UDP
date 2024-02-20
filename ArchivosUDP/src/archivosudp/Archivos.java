@@ -4,6 +4,8 @@
  */
 package archivosudp;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +20,8 @@ public class Archivos extends javax.swing.JFrame {
     public Archivos() {
         initComponents();
     }
-    
-     public void mostrarNombresArchivos(List<String> listaArchivos) {
+
+    public void mostrarNombresArchivos(List<String> listaArchivos) {
         if (listaArchivos.size() >= 1) {
             archivo1.setText(listaArchivos.get(0));
         }
@@ -30,7 +32,23 @@ public class Archivos extends javax.swing.JFrame {
             archivo3.setText(listaArchivos.get(2));
         }
     }
-    
+
+    public List<String> obtenerNombresArchivos(String directorio) {
+        List<String> nombresArchivos = new ArrayList<>();
+
+        File folder = new File(directorio);
+        File[] files = folder.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    nombresArchivos.add(file.getName());
+                }
+            }
+        }
+
+        return nombresArchivos;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +83,11 @@ public class Archivos extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(51, 204, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Descargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         archivo1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         archivo1.setText("Archivo 1");
@@ -160,6 +183,11 @@ public class Archivos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -48,6 +48,7 @@ public class ClienteSocket extends Thread {
 
             for (String nombreArchivo : nombresArchivos) {
                 listaNombresArchivos.add(nombreArchivo);
+                
             }
 
             Archivos pantallaArchivos = new Archivos();
