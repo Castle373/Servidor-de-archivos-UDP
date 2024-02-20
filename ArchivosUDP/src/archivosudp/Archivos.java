@@ -37,6 +37,7 @@ public class Archivos extends javax.swing.JFrame {
         }
     }
     public String obtener(String archivo){
+        clienteSocket.enviarSocket(archivo);
         return archivo;
     }
   

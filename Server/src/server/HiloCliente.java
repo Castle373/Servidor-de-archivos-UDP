@@ -38,54 +38,58 @@ public class HiloCliente extends Thread {
     @Override
     public void run() {
 
-        DatagramPacket packetEnviar = new DatagramPacket(new byte[255], 255,packetRecibir.getAddress(),packetRecibir.getPort());
+        DatagramPacket packetEnviar = new DatagramPacket(new byte[255], 255, packetRecibir.getAddress(), packetRecibir.getPort());
         String palabra = new String(packetRecibir.getData());
         String palabraC = "LISTA";
-        
+
         if (palabra.contains(palabraC)) {
             try {
                 File archivo = new File("./archivos");
                 String[] listaArchivos = archivo.list();
                 String cadenaArchivos = "";
-                
+
                 for (String listaArchivo : listaArchivos) {
-                   
-                    cadenaArchivos+=(listaArchivo);
-                    cadenaArchivos+=" ";
-                    
+
+                    cadenaArchivos += (listaArchivo);
+                    cadenaArchivos += " ";
+
                 }
-                
+
                 packetEnviar.setData(cadenaArchivos.getBytes());
-                
+                System.out.println("enviandox");
+                System.out.println(packetRecibir.getAddress().toString() + " " + packetRecibir.getPort());
                 socket.send(packetEnviar);
                 packetEnviar.setLength(packetEnviar.getData().length);
             } catch (IOException ex) {
                 Logger.getLogger(HiloCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            System.out.println("noentro");
+           
         }
-        packetRecibir = new DatagramPacket(new byte[ECHOMAX], ECHOMAX);
+
         while (true) {
             try {
                 socket.receive(packetRecibir);
+
                 String fileName = new String(packetRecibir.getData()).trim();
-
+                System.out.println("enviando :" + fileName);
+                
                 DatagramPacket recieveArchive;
-
-                //Lo busca en el directorio por el nombre
+                
+               
+                
                 try (FileInputStream path = new FileInputStream("./archivos/" + fileName)) {
 
                     // Lee el contenido actual del archivo (si existe)
                     byte[] packet = new byte[1024];
 
                     while (true) {
-
+                        
                         if (!(path.read(packet) != -1)) {
                             break;
                         }
-                        recieveArchive = new DatagramPacket(packet, packet.length);
-
+                        System.out.println(packetRecibir.getAddress().toString()+" "+packetRecibir.getPort());
+                        recieveArchive = new DatagramPacket(packet, packet.length,packetRecibir.getAddress(),packetRecibir.getPort());
                         socket.send(recieveArchive);
                     }
 

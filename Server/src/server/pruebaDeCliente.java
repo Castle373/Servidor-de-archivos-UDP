@@ -24,7 +24,7 @@ public class pruebaDeCliente {
      */
     public static void main(String[] args) throws SocketException, UnknownHostException {
         
-        InetAddress serverAddres = InetAddress.getByName("192.168.1.254");
+        InetAddress serverAddres = InetAddress.getByName("192.168.0.112");
         int serverPort = 70;
         DatagramSocket socket = new DatagramSocket();
        
