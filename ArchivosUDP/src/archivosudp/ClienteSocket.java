@@ -4,6 +4,7 @@
  */
 package archivosudp;
 
+import java.awt.Frame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,12 +23,14 @@ public class ClienteSocket extends Thread {
     private InetAddress serverAddres;
     private int serverPort;
     private DatagramSocket socket;
+    private Archivos pantallaArchivo;
 
-    public ClienteSocket() {
+    public ClienteSocket(Archivos pantalla) {
         try {
             serverAddres = InetAddress.getByName("192.168.100.20");
             serverPort = 1234;
             socket = new DatagramSocket();
+            pantallaArchivo = pantalla;
         } catch (Exception e) {
         }
     }
@@ -50,9 +53,8 @@ public class ClienteSocket extends Thread {
                 listaNombresArchivos.add(nombreArchivo);
                 
             }
-
-            Archivos pantallaArchivos = new Archivos();
-            pantallaArchivos.mostrarNombresArchivos(listaNombresArchivos);
+            
+            pantallaArchivo.mostrarNombresArchivos(listaNombresArchivos);
         } catch (Exception e) {
         }
 
