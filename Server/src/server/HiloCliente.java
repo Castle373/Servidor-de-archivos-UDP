@@ -41,7 +41,7 @@ public class HiloCliente extends Thread {
         DatagramPacket packetEnviar = new DatagramPacket(new byte[255], 255, packetRecibir.getAddress(), packetRecibir.getPort());
         String palabra = new String(packetRecibir.getData());
         String palabraC = "LISTA";
-
+        System.out.println("ola");
         if (palabra.contains(palabraC)) {
             try {
                 File archivo = new File("./archivos");
@@ -64,12 +64,8 @@ public class HiloCliente extends Thread {
                 Logger.getLogger(HiloCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-           
-        }
-
-        while (true) {
-            try {
-                socket.receive(packetRecibir);
+           try {
+//                socket.receive(packetRecibir);
 
                 String fileName = new String(packetRecibir.getData()).trim();
                 System.out.println("enviando :" + fileName);
@@ -101,6 +97,41 @@ public class HiloCliente extends Thread {
             }
 
         }
+
+//        while (true) {
+//            try {
+//                socket.receive(packetRecibir);
+//
+//                String fileName = new String(packetRecibir.getData()).trim();
+//                System.out.println("enviando :" + fileName);
+//                
+//                DatagramPacket recieveArchive;
+//                
+//               
+//                
+//                try (FileInputStream path = new FileInputStream("./archivos/" + fileName)) {
+//
+//                    // Lee el contenido actual del archivo (si existe)
+//                    byte[] packet = new byte[1024];
+//
+//                    while (true) {
+//                        
+//                        if (!(path.read(packet) != -1)) {
+//                            break;
+//                        }
+//                        System.out.println(packetRecibir.getAddress().toString()+" "+packetRecibir.getPort());
+//                        recieveArchive = new DatagramPacket(packet, packet.length,packetRecibir.getAddress(),packetRecibir.getPort());
+//                        socket.send(recieveArchive);
+//                    }
+//
+//                    path.close();
+//                }
+//
+//            } catch (IOException ex) {
+//                Logger.getLogger(HiloCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        }
     }
 
 }

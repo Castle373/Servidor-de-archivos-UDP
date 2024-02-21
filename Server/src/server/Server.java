@@ -29,7 +29,7 @@ public class Server {
     public static void main(String[] args) {
         ArrayList<String> puertos = new ArrayList<>();
         Executor service = Executors.newCachedThreadPool();
-        DatagramPacket packet = new DatagramPacket(new byte[ECHOMAX], ECHOMAX);
+        
         DatagramSocket clientSocket = null;
         try {
             clientSocket = new DatagramSocket(70);
@@ -39,14 +39,16 @@ public class Server {
 
         while (true) {
             try {
+                DatagramPacket packet = new DatagramPacket(new byte[ECHOMAX], ECHOMAX);
+                
                 clientSocket.receive(packet);
-  
+                
                 String destino = "";
                 destino+=(packet.getAddress().toString());
                 destino+=(String.valueOf(packet.getPort()));
               
                 if (!puertos.contains(destino)) {
-                    puertos.add(destino);
+//                    puertos.add(destino);
                     service.execute(new HiloCliente(clientSocket,packet));;
                     System.out.println("Cliente nuevo");
                 }else{

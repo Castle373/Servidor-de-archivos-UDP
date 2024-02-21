@@ -33,7 +33,7 @@ public class ClienteSocket extends Thread {
 
     public ClienteSocket(Archivos pantalla) {
         try {
-            serverAddres = InetAddress.getByName("192.168.0.112");
+            serverAddres = InetAddress.getByName("localhost");
             serverPort = 70;
             socket = new DatagramSocket();
             pantallaArchivo = pantalla;
